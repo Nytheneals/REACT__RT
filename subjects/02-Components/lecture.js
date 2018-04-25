@@ -3,42 +3,42 @@ import "./styles.css";
 import React from "react";
 import ReactDOM from "react-dom";
 
-let isOpen = false;
+class ContentToggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false
+    };
 
-function handleClick() {
-  isOpen = !isOpen;
-  updateThePage();
-}
-
-function ContentToggle() {
-  let summaryClassName = "content-toggle-summary";
-
-  if (isOpen) {
-    summaryClassName += " content-toggle-summary-open";
+    this.handleClick = () => {
+      this.setState({ isOpen: !this.state.isOpen });
+    };
   }
 
-  return (
-    <div className="content-toggle">
-      <button onClick={handleClick} className={summaryClassName}>
-        Tacos
-      </button>
-      {isOpen && (
-        <div className="content-toggle-details">
-          <p>
-            A taco is a traditional Mexican dish composed of a corn or
-            wheat tortilla folded or rolled around a filling.
-          </p>
-        </div>
-      )}
-    </div>
-  );
+  render() {
+    let summaryClassName = "content-toggle-summary";
+    if (this.state.isOpen) {
+      summaryClassName += " content-toggle-summary-open";
+    }
+    return (
+      <div className="content-toggle">
+        <button onClick={this.handleClick} className={summaryClassName}>
+          Tacos
+        </button>
+        {this.state.isOpen && (
+          <div className="content-toggle-details">
+            <p>
+              A taco is a traditional Mexican dish composed of a corn or
+              wheat tortilla folded or rolled around a filling.
+            </p>
+          </div>
+        )}
+      </div>
+    );
+  }
 }
 
-function updateThePage() {
-  ReactDOM.render(<ContentToggle />, document.getElementById("app"));
-}
-
-updateThePage();
+ReactDOM.render(<ContentToggle />, document.getElementById("app"));
 
 ////////////////////////////////////////////////////////////////////////////////
 // Let's encapsulate state in an object and call it what it really is. Then, add
