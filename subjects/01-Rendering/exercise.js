@@ -17,20 +17,62 @@ import React from "react";
 import ReactDOM from "react-dom";
 import sortBy from "sort-by";
 
-const DATA = {
-  title: "Menu",
-  items: [
-    { id: 1, name: "tacos", type: "mexican" },
-    { id: 2, name: "burrito", type: "mexican" },
-    { id: 3, name: "tostada", type: "mexican" },
-    { id: 4, name: "mushy peas", type: "english" },
-    { id: 5, name: "fish and chips", type: "english" },
-    { id: 6, name: "black pudding", type: "english" }
-  ]
-};
+// const DATA = {
+//   title: "Menu",
+//   items: [
+//     { id: 1, name: "tacos", type: "mexican" },
+//     { id: 2, name: "burrito", type: "mexican" },
+//     { id: 3, name: "tostada", type: "mexican" },
+//     { id: 4, name: "mushy peas", type: "english" },
+//     { id: 5, name: "fish and chips", type: "english" },
+//     { id: 6, name: "black pudding", type: "english" }
+//   ]
+// };
 
-function Menu() {
-  return <div>Open the console, you have failing tests.</div>;
+class Menu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "Menu",
+      items: [
+        { id: 1, name: "tacos", type: "mexican" },
+        { id: 2, name: "burrito", type: "mexican" },
+        { id: 3, name: "tostada", type: "mexican" },
+        { id: 4, name: "mushy peas", type: "english" },
+        { id: 5, name: "fish and chips", type: "english" },
+        { id: 6, name: "black pudding", type: "english" }
+      ]
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    console.log(e.target.value);
+    this.setState({
+      title: e.target.value
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <form onChange={this.handleChange}>
+          <label>
+            FOOD:
+            <input type="text" name="name" />
+          </label>
+        </form>
+        <ul>
+          <h1>{this.state.title}</h1>
+          {this.state.items
+            .filter(item => item.type == "mexican")
+            .sort(sortBy("name"))
+            .map((item, i) => <li key={i}>{item.name}</li>)}
+        </ul>
+      </div>
+    );
+  }
 }
 
 ReactDOM.render(<Menu />, document.getElementById("app"), () => {

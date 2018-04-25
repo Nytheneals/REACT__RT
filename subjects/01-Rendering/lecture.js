@@ -147,32 +147,47 @@ import ReactDOM from "react-dom";
 // - its like PHP but EVEN BETTER
 
 const people = [
-  { firstName: "Paul", lastName: "Nathaneals" },
-  { firstName: "Ryan", lastName: "Florence" },
-  { firstName: "Paul", lastName: "Nathaneals" },
-  { firstName: "Ryan", lastName: "Florence" },
-  { firstName: "Paul", lastName: "Nathaneals" },
-  { firstName: "Ryan", lastName: "Florence" },
-  { firstName: "Paul", lastName: "Nathaneals" },
-  { firstName: "Ryan", lastName: "Florence" }
+  { id: 1, firstName: "Paul", lastName: "Nathaneals" },
+  { id: 2, firstName: "Ryan", lastName: "Florence" },
+  { id: 3, firstName: "Paul", lastName: "Nathaneals" },
+  { id: 4, firstName: "Ryan", lastName: "Florence" },
+  { id: 5, firstName: "Paul", lastName: "Nathaneals" },
+  { id: 6, firstName: "Ryan", lastName: "Florence" },
+  { id: 7, firstName: "Paul", lastName: "Nathaneals" },
+  { id: 8, firstName: "Ryan", lastName: "Florence" }
 ];
 
-class ContactList extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Contacts</h1>
-        <ul>
-          {people.map((person, index) => (
-            <li key={index}>
-              {index} {person.firstName} {person.lastName}
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
+// class ContactList extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <h1>Contacts</h1>
+//         <ul>
+//           {people.map((person, index) => (
+//             <li key={person.id}>
+//               {person.id} {person.firstName} {person.lastName}
+//             </li>
+//           ))}
+//         </ul>
+//       </div>
+//     );
+//   }
+// }
+
+const ContactList = () => {
+  return (
+    <div>
+      <h1>Contacts</h1>
+      <ul>
+        {people.map((person, index) => (
+          <li key={person.id}>
+            {person.id} {person.firstName} {person.lastName}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 const node = document.getElementById("app");
 
