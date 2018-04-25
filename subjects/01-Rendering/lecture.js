@@ -145,3 +145,35 @@ import ReactDOM from "react-dom";
 // - Always rerender
 // - Virtual DOM makes it efficient
 // - its like PHP but EVEN BETTER
+
+const people = [
+  { firstName: "Paul", lastName: "Nathaneals" },
+  { firstName: "Ryan", lastName: "Florence" },
+  { firstName: "Paul", lastName: "Nathaneals" },
+  { firstName: "Ryan", lastName: "Florence" },
+  { firstName: "Paul", lastName: "Nathaneals" },
+  { firstName: "Ryan", lastName: "Florence" },
+  { firstName: "Paul", lastName: "Nathaneals" },
+  { firstName: "Ryan", lastName: "Florence" }
+];
+
+class ContactList extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Contacts</h1>
+        <ul>
+          {people.map((person, index) => (
+            <li key={index}>
+              {index} {person.firstName} {person.lastName}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
+
+const node = document.getElementById("app");
+
+ReactDOM.render(<ContactList />, node);
