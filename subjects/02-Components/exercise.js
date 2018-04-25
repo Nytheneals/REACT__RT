@@ -38,49 +38,59 @@ class Tabs extends React.Component {
   render() {
     return (
       <div className="Tabs">
-        <div className="Tab" style={styles.activeTab}>
-          Active
-        </div>
-        <div className="Tab" style={styles.tab}>
-          Inactive
-        </div>
-        <div className="TabPanel" style={styles.panel}>
-          Panel
-        </div>
+        {this.props.countries.map((country, index) => (
+          <div className="Tab" style={styles.activeTab}>
+            {country.name}
+          </div>
+        ))}
       </div>
     );
   }
 }
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      countries: [
+        {
+          id: 1,
+          name: "USA",
+          description: "Land of the Free, Home of the brave"
+        },
+        {
+          id: 2,
+          name: "Brazil",
+          description: "Sunshine, beaches, and Carnival"
+        },
+        { id: 3, name: "Russia", description: "World Cup 2018!" }
+      ]
+    };
+  }
   render() {
     return (
       <div>
         <h1>Countries</h1>
-        <Tabs data={this.props.countries} />
+        <Tabs countries={this.state.countries} />
       </div>
     );
   }
 }
 
-const DATA = [
-  {
-    id: 1,
-    name: "USA",
-    description: "Land of the Free, Home of the brave"
-  },
-  {
-    id: 2,
-    name: "Brazil",
-    description: "Sunshine, beaches, and Carnival"
-  },
-  { id: 3, name: "Russia", description: "World Cup 2018!" }
-];
+// const DATA = [
+//   {
+//     id: 1,
+//     name: "USA",
+//     description: "Land of the Free, Home of the brave"
+//   },
+//   {
+//     id: 2,
+//     name: "Brazil",
+//     description: "Sunshine, beaches, and Carnival"
+//   },
+//   { id: 3, name: "Russia", description: "World Cup 2018!" }
+// ];
 
-ReactDOM.render(
-  <App countries={DATA} />,
-  document.getElementById("app"),
-  function() {
-    require("./tests").run(this);
-  }
-);
+ReactDOM.render(<App />, document.getElementById("app"), function() {
+  require("./tests").run(this);
+});

@@ -7,11 +7,15 @@ class ContentToggle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      numToggles: 0
     };
 
     this.handleClick = () => {
       this.setState({ isOpen: !this.state.isOpen });
+    };
+    this.handleToggle = () => {
+      this.setState({ numToggles: this.state.numToggles + 1 });
     };
   }
 
@@ -21,18 +25,41 @@ class ContentToggle extends React.Component {
       summaryClassName += " content-toggle-summary-open";
     }
     return (
-      <div className="content-toggle">
-        <button onClick={this.handleClick} className={summaryClassName}>
-          Tacos
-        </button>
-        {this.state.isOpen && (
-          <div className="content-toggle-details">
-            <p>
-              A taco is a traditional Mexican dish composed of a corn or
-              wheat tortilla folded or rolled around a filling.
-            </p>
-          </div>
-        )}
+      <div>
+        <h1>Toggles : {this.state.numToggles}</h1>
+
+        <div className="content-toggle" onClick={this.handleToggle}>
+          <button
+            onClick={this.handleClick}
+            className={summaryClassName}
+          >
+            Tacos
+          </button>
+          {this.state.isOpen && (
+            <div className="content-toggle-details">
+              <p>
+                A taco is a traditional Mexican dish composed of a corn
+                or wheat tortilla folded or rolled around a filling.
+              </p>
+            </div>
+          )}
+        </div>
+        <div className="content-toggle" onClick={this.handleToggle}>
+          <button
+            onClick={this.handleClick}
+            className={summaryClassName}
+          >
+            Tacos
+          </button>
+          {this.state.isOpen && (
+            <div className="content-toggle-details">
+              <p>
+                A taco is a traditional Mexican dish composed of a corn
+                or wheat tortilla folded or rolled around a filling.
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
