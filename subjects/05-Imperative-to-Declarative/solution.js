@@ -33,7 +33,11 @@ class Modal extends React.Component {
 
   render() {
     return (
-      <div className="modal fade" ref={node => (this.node = node)}>
+      <div
+        className="modal fade"
+        data-backdrop="static"
+        ref={node => (this.node = node)}
+      >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

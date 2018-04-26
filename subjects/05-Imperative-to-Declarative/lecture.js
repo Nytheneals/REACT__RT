@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import createOscillator from "./utils/createOscillator";
 
+// STYLES
 const styles = {};
 
 styles.theremin = {
@@ -15,19 +16,22 @@ styles.theremin = {
   display: "inline-block"
 };
 
-class App extends React.Component {
+// APP INITIALISATION
+class App extends Component {
   componentDidMount() {
     this.oscillator = createOscillator();
   }
-
+  // METHOD THAT PLAYS
   play = () => {
     this.oscillator.play();
   };
 
+  // METHOD THAT PLAYS
   stop = () => {
     this.oscillator.stop();
   };
 
+  // METHOD FOR CHANGING TONE AS THE MOUSE MOVES
   changeTone = event => {
     const { clientX, clientY } = event;
     const {
@@ -43,6 +47,7 @@ class App extends React.Component {
     this.oscillator.setVolume(volume);
   };
 
+  // MY RENDER METHOD.
   render() {
     return (
       <div>

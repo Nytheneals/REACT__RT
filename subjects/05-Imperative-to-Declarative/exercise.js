@@ -41,20 +41,37 @@ class Modal extends React.Component {
 }
 
 class App extends React.Component {
-  openModal = () => {
-    this.modal.open();
-  };
+  constructor() {
+    super();
 
-  closeModal = () => {
-    this.modal.close();
-  };
+    this.state = {
+      isOpen: true
+    };
+  }
+
+  componentDidMount() {
+    this.setState({ isOpen: true });
+  }
+
+  componentDidUpdate() {
+    this.setState({ isOpen: false });
+  }
+
+  doImperativeWork() {
+    if (this.props.isOpen) {
+    }
+  }
 
   render() {
     return (
       <div className="container">
         <h1>Let’s make bootstrap modal declarative</h1>
 
-        <button className="btn btn-primary" onClick={this.openModal}>
+        <button
+          className="btn btn-primary"
+          // onClick={this.openModal}
+          onClick={this.handleClickOPen}
+        >
           open modal
         </button>
 
@@ -72,7 +89,8 @@ class App extends React.Component {
             snapshots of state.
           </p>
           <button
-            onClick={this.closeModal}
+            // onClick={this.closeModal}
+            onClick={this.handleClickClose}
             type="button"
             className="btn btn-default"
           >
@@ -85,3 +103,5 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById("app"));
+
+// this.setState({ isOpen: !this.state.isOpen });

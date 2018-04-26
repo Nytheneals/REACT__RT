@@ -10,12 +10,33 @@
 ////////////////////////////////////////////////////////////////////////////////
 import "./styles.css";
 
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
 function withMouse(Component) {
-  return Component;
+  return class extends Component {
+    state = {
+      x: null,
+      y: null
+    };
+
+    movingMouse = e => {
+      console.log(e.clientX, e.clientY);
+      this.setState({
+        x: e.clientX,
+        y: e.clientY
+      });
+    };
+
+    render() {
+      return (
+        <div onMouseMove={this.movingMouse}>
+          <Component mouse={this.state} />
+        </div>
+      );
+    }
+  };
 }
 
 class App extends React.Component {
