@@ -14,6 +14,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
+// HIGHER ORDER COMPONENT
 function withMouse(Component) {
   return class extends Component {
     state = {
@@ -39,6 +40,7 @@ function withMouse(Component) {
   };
 }
 
+// END OF HIGHER ORDER COMPONENT
 class App extends React.Component {
   static propTypes = {
     mouse: PropTypes.shape({
@@ -64,6 +66,7 @@ class App extends React.Component {
   }
 }
 
+// WRAPPING OUR HOC
 const AppWithMouse = withMouse(App);
 
 ReactDOM.render(<AppWithMouse />, document.getElementById("app"));
