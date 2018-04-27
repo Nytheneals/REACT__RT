@@ -43,6 +43,7 @@ class Tabs extends React.Component {
   }
 }
 
+// MAIN APP COMPONENT
 class App extends React.Component {
   render() {
     const tabData = [

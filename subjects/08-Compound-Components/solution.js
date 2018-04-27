@@ -50,6 +50,7 @@ class RadioIcon extends React.Component {
   }
 }
 
+//  THE RADIO GROUP HOLDING OUR STATE FROM PROPS
 class RadioGroup extends React.Component {
   static propTypes = {
     defaultValue: PropTypes.string
@@ -92,6 +93,7 @@ class RadioOption extends React.Component {
   }
 }
 
+// APP COMPONENT ( PARENT COMPONENT)
 class App extends React.Component {
   state = {
     radioValue: "fm"

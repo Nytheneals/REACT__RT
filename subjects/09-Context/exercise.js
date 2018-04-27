@@ -15,30 +15,55 @@
 //   without using DOM traversal APIs
 // - Implement a <ResetButton> that resets the <TextInput>s in the form
 ////////////////////////////////////////////////////////////////////////////////
-import React from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
+const MyContext = React.createContext();
+
 class Form extends React.Component {
   render() {
-    return <div>{this.props.children}</div>;
+    return (
+      <div>
+        <MyContext.Provider value={{ submit: this.props.onSubmit }}>
+          {this.props.children}
+        </MyContext.Provider>
+      </div>
+    );
   }
 }
 
 class SubmitButton extends React.Component {
   render() {
-    return <button>{this.props.children}</button>;
+    return (
+      <MyContext.Consumer>
+        {context => (
+          <Fragment>
+            <button onClick={context.submit}>
+              {this.props.children}
+            </button>
+          </Fragment>
+        )}
+      </MyContext.Consumer>
+    );
   }
 }
 
 class TextInput extends React.Component {
   render() {
     return (
-      <input
-        type="text"
-        name={this.props.name}
-        placeholder={this.props.placeholder}
-      />
+      <MyContext.Consumer>
+        {context => (
+          <input
+            type="text"
+            name={this.props.name}
+            placeholder={this.props.placeholder}
+            onKeyDown={e => {
+              if (e.key === "Enter") context.submit();
+            }}
+          />
+        )}
+      </MyContext.Consumer>
     );
   }
 }
@@ -70,3 +95,26 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById("app"));
+
+const fishes = ["tuna", "albacore"];
+
+const fishy = fishes.map(fish => `${fish} + nice`);
+console.log(fishy);
+
+const fishes = ["tuna", "albacore"];
+const fishyNotNice = fishes.map(fish => {
+  if (fish == "tuna") {
+    return fish;
+  }
+});
+
+const fishes = ["tuna", "albacore"];
+const smellyFish = fishes.map(fish => {
+  if (fish === "tuna") {
+    return "smelly";
+  } else {
+    return "Not Smelly ";
+  }
+});
+
+console.log(smellyFish);

@@ -25,6 +25,7 @@ import PropTypes from "prop-types";
 import getAddressFromCoords from "./utils/getAddressFromCoords";
 import LoadingDots from "./LoadingDots";
 
+// COMPONENT RENDERING STATE AS PROPS
 class GeoPosition extends React.Component {
   static propTypes = {
     children: PropTypes.func.isRequired
@@ -63,6 +64,7 @@ class GeoPosition extends React.Component {
   }
 }
 
+// COMPONENT RENDERING STATE AS PROPS
 class GeoAddress extends React.Component {
   static propTypes = {
     latitude: PropTypes.number,

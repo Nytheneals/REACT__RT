@@ -31,9 +31,22 @@ class RadioGroup extends React.Component {
   static propTypes = {
     defaultValue: PropTypes.string
   };
+  // STATE FROM PROPS
+  state = {
+    value: this.props.defaultValue
+  };
 
   render() {
-    return <div>{this.props.children}</div>;
+    return (
+      <div>
+        {React.Children.map(this.props.children, child =>
+          React.cloneElement(child, {
+            _isSelected: this.props.value === this.state.value,
+            onClick: () => this.select(child.props.value)
+          })
+        )}
+      </div>
+    );
   }
 }
 
